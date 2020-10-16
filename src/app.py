@@ -20,10 +20,10 @@ def main():
     new_tweet_text = generate_forest()
     _ = api.update_status(new_tweet_text)
     
-    # print tweets for validation
-    public_tweets = api.home_timeline()
-    for tweet in public_tweets:
-        print(tweet.text)
+    # # print tweets for validation
+    # public_tweets = api.home_timeline()
+    # for tweet in public_tweets:
+    #     print(tweet.text)
 
     logger.info("script ended")
 
