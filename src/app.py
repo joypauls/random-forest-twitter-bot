@@ -18,12 +18,12 @@ def main():
 
     # send tweet
     new_tweet_text = generate_forest()
-    _ = api.update_status(new_tweet_text)
+    _response = api.update_status(new_tweet_text)
     
-    # # print tweets for validation
-    # public_tweets = api.home_timeline()
-    # for tweet in public_tweets:
-    #     print(tweet.text)
+    # print latest tweet for validation
+    public_tweets = api.home_timeline()
+    # is this a list or just iterable?
+    print(public_tweets[0].text)
 
     logger.info("script ended")
 
