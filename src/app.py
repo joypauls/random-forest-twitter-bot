@@ -1,43 +1,44 @@
-import logging
-import tweepy
-from apscheduler.schedulers.blocking import BlockingScheduler
-from config import TWITTER_API_KEY, TWITTER_API_KEY_SECRET, TWITTER_ACCESS_TOKEN, TWITTER_ACCESS_TOKEN_SECRET
-from tweet.generate import generate_forest
-
-logger = logging.getLogger(__name__)
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s | %(levelname)s | %(message)s",
-    datefmt="%Y-%m-%dT%H:%M:%S"
+from config import (
+    api,
+    logger,
+    scheduler
 )
-logger.addHandler(logging.StreamHandler())
+from tweet import BotTweet
 
-auth = tweepy.OAuthHandler(TWITTER_API_KEY, TWITTER_API_KEY_SECRET)
-auth.set_access_token(TWITTER_ACCESS_TOKEN, TWITTER_ACCESS_TOKEN_SECRET)
-api = tweepy.API(auth)
+# hours
+TWEET_INTERVAL = 7
+# num lines
+GRID_HEIGHT = 7
+# width in tokens
+GRID_WIDTH = 12
 
-scheduler = BlockingScheduler()
 
-def send_tweet():
-    pass
+def new_bot_tweet():
+    bot = BotTweet(api, GRID_HEIGHT, GRID_WIDTH)
+    try:
+        # generate the actual text
+        bot.generate()
+        # send with tweepy api
+        bot.send()
+        # log latest tweet to validate
+        last = bot.get_last()
+        print(last)
+    except Exception as e:
+        print(e)
+        logger.error("failed to send tweet")
 
 
 def main():
-    
-    logger.info("script started")
 
-    # send tweet
-    new_tweet_text = generate_forest()
-    _response = api.update_status(new_tweet_text)
-    
-    # print latest tweet for validation
-    public_tweets = api.home_timeline()
-    # is this a list or just iterable?
-    print(public_tweets[0].text)
+    # uncomment for adhoc run at start
+    new_bot_tweet()
 
     # add job
-    _job = scheduler.add_job(send_tweet, "interval", hours=5)
+    _job = scheduler.add_job(new_bot_tweet, "interval", hours=TWEET_INTERVAL)
+    # start scheduler as primary foreground process
     scheduler.start()
 
+
 if __name__ == "__main__":
+    logger.info("bot script started")
     main()
