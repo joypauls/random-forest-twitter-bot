@@ -4,8 +4,8 @@ import tweepy
 from apscheduler.schedulers.blocking import BlockingScheduler
 
 # only needed on bare metal
-import dotenv
-dotenv.load_dotenv("../config/secrets")
+# import dotenv
+# dotenv.load_dotenv("../config/secrets")
 
 
 # configure tweepy api

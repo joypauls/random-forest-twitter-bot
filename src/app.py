@@ -21,8 +21,8 @@ def new_bot_tweet():
         # send with tweepy api
         bot.send()
         # log latest tweet to validate
-        last = bot.get_last()
-        print(last)
+        # last = bot.get_last()
+        # print(last)
     except Exception as e:
         print(e)
         logger.error("failed to send tweet")
@@ -40,5 +40,5 @@ def main():
 
 
 if __name__ == "__main__":
-    logger.info("bot script started")
+    logger.info("bot started")
     main()

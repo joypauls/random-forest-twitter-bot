@@ -6,3 +6,6 @@ start: build
 
 stop:
 	docker-compose down
+
+logs:
+	docker-compose logs
