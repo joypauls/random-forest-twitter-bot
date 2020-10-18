@@ -1,2 +1,8 @@
-start:
-	docker-compose up -d --build --remove-orphans
+build:
+	docker-compose build
+
+start: build
+	docker-compose up -d --remove-orphans
+
+stop:
+	docker-compose down

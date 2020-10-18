@@ -1,4 +1,4 @@
 import pytest
 
-def test_formatting(rows: int, cols: int):
+def test_formatting():
     assert True
