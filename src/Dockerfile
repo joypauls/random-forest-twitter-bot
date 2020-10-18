@@ -4,9 +4,10 @@ RUN apt-get update && apt-get install -y cron
 
 WORKDIR /usr/src/app
 
+# build context is src
 COPY requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-CMD [ "python", "run.py" ]
+CMD [ "python", "app.py" ]
