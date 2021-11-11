@@ -3,18 +3,40 @@ from config import (
     logger,
     scheduler
 )
-from tweet import BotTweet
+from tweet import Bot
+from tweet.generate import generate_forest
+
+# class Bot():
+#     """
+#     The bot
+#     """
+#     def __init__(
+#         self,
+#         api: tweepy.API,
+#         generator: Callable[[int, int], str], 
+#         height: int,
+#         width: int,
+#         is_test: bool = False
+#     ):
+#         self.api = api
+#         self.height = height
+#         self.width = width
+#         self.is_test = is_test
+#         self.text = None
+
+#     def generate(self):
+#         self.text = self.generator(self.height, self.width)
 
 # hours
-TWEET_INTERVAL = 7
+TWEET_INTERVAL = 6
 # num lines
 GRID_HEIGHT = 7
 # width in tokens
 GRID_WIDTH = 12
 
 
-def new_bot_tweet():
-    bot = BotTweet(api, GRID_HEIGHT, GRID_WIDTH)
+def beep_boop():
+    bot = Bot(api, generate_forest, GRID_HEIGHT, GRID_WIDTH)
     try:
         # generate the actual text
         bot.generate()
@@ -31,14 +53,14 @@ def new_bot_tweet():
 def main():
 
     # uncomment for adhoc run at start
-    new_bot_tweet()
+    beep_boop()
 
     # add job
-    _job = scheduler.add_job(new_bot_tweet, "interval", hours=TWEET_INTERVAL)
+    _job = scheduler.add_job(beep_boop, "interval", hours=TWEET_INTERVAL)
     # start scheduler as primary foreground process
     scheduler.start()
 
 
 if __name__ == "__main__":
-    logger.info("bot started")
+    logger.info("Beep boop bot booted.")
     main()

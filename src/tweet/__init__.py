@@ -1,1 +1,1 @@
-from .compose import BotTweet
+from .bot import Bot

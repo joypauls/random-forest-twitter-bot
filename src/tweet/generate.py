@@ -30,7 +30,7 @@ def sample_tokens(k, tokens, weights) -> np.array:
     return np.random.choice(tokens, k, p=weights)
 
 
-def generate_forest(m: int = 7, n: int = 12):
+def generate_forest(m: int = 7, n: int = 12) -> str:
     # fill background
     base_tokens = sample_tokens(m * n, BASE_TOKENS, BASE_WEIGHTS)
     # pass through and replace

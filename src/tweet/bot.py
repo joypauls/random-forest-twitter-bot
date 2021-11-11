@@ -2,29 +2,32 @@
 Main interface to generate a tweet for the bot.
 """
 import tweepy
+from typing import Callable
 from config import logger
 from tweet.generate import generate_forest
 
 
-class BotTweet():
+class Bot():
     """
     Tweet generator class
     """
     def __init__(
         self,
         api: tweepy.API,
+        generator: Callable[[int, int], str], 
         height: int,
         width: int,
         is_test: bool = False
     ):
         self.api = api
+        self.generator = generator
         self.height = height
         self.width = width
         self.is_test = is_test
         self.text = None
 
     def generate(self):
-        self.text = generate_forest(self.height, self.width)
+        self.text = self.generator(self.height, self.width)
 
     def send(self):
         if self.text is None:
