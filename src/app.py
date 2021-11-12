@@ -3,8 +3,9 @@ from config import (
     logger,
     scheduler
 )
+import numpy as np
 from tweet import Bot
-from tweet.generate import generate_forest
+from tweet.generate import generate_forest, generate_tropical
 
 # class Bot():
 #     """
@@ -36,7 +37,11 @@ GRID_WIDTH = 12
 
 
 def beep_boop(is_test: bool = False):
-    bot = Bot(api, generate_forest, GRID_HEIGHT, GRID_WIDTH, is_test)
+    p = np.random.uniform(0, 1, 1)
+    if p > 0.4:
+        bot = Bot(api, generate_forest, GRID_HEIGHT, GRID_WIDTH, is_test)
+    else:
+        bot = Bot(api, generate_tropical, GRID_HEIGHT, GRID_WIDTH, is_test)
     try:
         # generate the actual text
         bot.generate()

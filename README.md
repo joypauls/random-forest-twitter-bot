@@ -1,4 +1,4 @@
-# Random Forest Twitter Bot
+# Glinda Twitter Bot
 
 Deployment code for [this bot](https://twitter.com/randoforestbot). Interfaces with the Twitter API through the fabulous [tweepy](https://www.tweepy.org/) library.
 
@@ -6,7 +6,7 @@ A hacky weekend project so tread lightly! Look below for [some tips](#making-you
 
 #### Deploying This Project
 
-- You'll need to `cp config/secrets_template config/secrets` and use you Twitter developer api & access key credentials.
+- You'll need to `cp config/secrets_template config/secrets` and use your Twitter developer API & access key credentials.
 - Run by `make start`
 
 ## Making Your Own Bot
