@@ -31,14 +31,14 @@ from tweet.generate import generate_forest, generate_tropical
 # hours
 TWEET_INTERVAL = 6
 # num lines
-GRID_HEIGHT = 7
+GRID_HEIGHT = 8
 # width in tokens
 GRID_WIDTH = 12
 
 
 def beep_boop(is_test: bool = False):
     p = np.random.uniform(0, 1, 1)
-    if p > 0.4:
+    if p > 0.5:
         bot = Bot(api, generate_forest, GRID_HEIGHT, GRID_WIDTH, is_test)
     else:
         bot = Bot(api, generate_tropical, GRID_HEIGHT, GRID_WIDTH, is_test)
