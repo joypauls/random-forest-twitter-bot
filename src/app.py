@@ -35,8 +35,8 @@ GRID_HEIGHT = 7
 GRID_WIDTH = 12
 
 
-def beep_boop():
-    bot = Bot(api, generate_forest, GRID_HEIGHT, GRID_WIDTH)
+def beep_boop(is_test: bool = False):
+    bot = Bot(api, generate_forest, GRID_HEIGHT, GRID_WIDTH, is_test)
     try:
         # generate the actual text
         bot.generate()
@@ -51,10 +51,8 @@ def beep_boop():
 
 
 def main():
-
     # uncomment for adhoc run at start
     beep_boop()
-
     # add job
     _job = scheduler.add_job(beep_boop, "interval", hours=TWEET_INTERVAL)
     # start scheduler as primary foreground process
