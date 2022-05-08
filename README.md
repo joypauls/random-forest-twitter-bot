@@ -1,4 +1,4 @@
-# Glinda Twitter Bot
+# Random Forest Twitter Bot
 
 Deployment code for [this bot](https://twitter.com/randoforestbot). Interfaces with the Twitter API through the fabulous [tweepy](https://www.tweepy.org/) library.
 
