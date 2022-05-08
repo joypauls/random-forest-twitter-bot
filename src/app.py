@@ -37,11 +37,12 @@ GRID_WIDTH = 12
 
 
 def beep_boop(is_test: bool = False):
-    p = np.random.uniform(0, 1, 1)
-    if p > 0.5:
-        bot = Bot(api, generate_forest, GRID_HEIGHT, GRID_WIDTH, is_test)
-    else:
-        bot = Bot(api, generate_tropical, GRID_HEIGHT, GRID_WIDTH, is_test)
+    bot = Bot(api, generate_forest, GRID_HEIGHT, GRID_WIDTH, is_test)
+    # p = np.random.uniform(0, 1, 1)
+    # if p > 0.5:
+    #     bot = Bot(api, generate_forest, GRID_HEIGHT, GRID_WIDTH, is_test)
+    # else:
+    #     bot = Bot(api, generate_tropical, GRID_HEIGHT, GRID_WIDTH, is_test)
     try:
         # generate the actual text
         bot.generate()
